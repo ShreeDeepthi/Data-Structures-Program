@@ -1,0 +1,26 @@
+public class FundCollection {
+    public static void main(String[] args) {
+        int[][] houses = {
+            {100, 200, 150, 300},
+            {250, 180, 210, 190},
+            {220, 350, 280, 320},
+            {180, 270, 190, 210},
+            {300, 320, 270, 260}
+        };
+
+        int[] streetTotal = new int[5];
+        int grandTotal = 0;
+
+        for (int i = 0; i < houses.length; i++) {
+            int streetSum = 0;
+            for (int j = 0; j < houses[i].length; j++) {
+                streetSum += houses[i][j];
+                grandTotal += houses[i][j];
+            }
+            streetTotal[i] = streetSum;
+            System.out.println("Total collected from Street " + (i + 1) + ": $" + streetSum);
+        }
+
+        System.out.println("Grand Total collected from the village: $" + grandTotal);
+    }
+}

@@ -1,0 +1,82 @@
+import java.util.Scanner;
+
+class Person {
+    String name;
+    Person next;
+
+    Person(String name) {
+        this.name = name;
+        this.next = null;
+    }
+}
+
+class CircularLinkedList {
+    Person head;
+
+    public void addPerson(String name) {
+        Person newPerson = new Person(name);
+        if (head == null) {
+            head = newPerson;
+            head.next = head;
+        } else {
+            Person current = head;
+            while (current.next != head) {
+                current = current.next;
+            }
+            current.next = newPerson;
+            newPerson.next = head;
+        }
+    }
+
+    public void reverse() {
+        if (head == null || head.next == head) {
+            return;
+        }
+
+        Person prev = null;
+        Person current = head;
+        Person firstNode = head;
+
+        do {
+            Person nextNode = current.next;
+            current.next = prev;
+            prev = current;
+            current = nextNode;
+        } while (current != firstNode);
+
+        head.next = prev;
+        head = prev;
+    }
+
+    public void printList() {
+        if (head == null) return;
+
+        Person current = head;
+        do {
+            System.out.print(current.name + " -> ");
+            current = current.next;
+        } while (current != head);
+        System.out.println("(back to " + head.name + ")");
+    }
+}
+
+public class CircularLinkedListReversal {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int N = scanner.nextInt();
+        scanner.nextLine();
+
+        CircularLinkedList circularList = new CircularLinkedList();
+
+        for (int i = 0; i < N; i++) {
+            System.out.printf("Enetr name of %d person : ",i+1);
+            String name = scanner.nextLine().trim();
+            circularList.addPerson(name);
+        }
+
+        circularList.reverse();
+        circularList.printList();
+
+        scanner.close();
+    }
+}

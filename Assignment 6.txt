@@ -1,0 +1,57 @@
+import java.util.Scanner;
+
+public class WeightMeasurementApp {
+    public static void main(String[] args) {
+        String[] students = new String[15];
+        double[] weights = new double[15];
+
+        Scanner input = new Scanner(System.in);
+
+        for (int i = 0; i < 15; i++) {
+            System.out.print("Enter student name: ");
+            students[i] = input.next();
+            System.out.print("Enter weight for " + students[i] + ": ");
+            weights[i] = input.nextDouble();
+        }
+
+        System.out.println("1. Print student names and weights");
+        System.out.println("2. Print name and weight of student with highest weight");
+        System.out.println("3. Print name and weight of student with lowest weight");
+        System.out.print("Enter your choice: ");
+        int choice = input.nextInt();
+
+        switch (choice) {
+            case 1:
+                for (int i = 0; i < 15; i++) {
+                    System.out.println(students[i] + ": " + weights[i]);
+                }
+                break;
+            case 2:
+                double maxWeight = weights[0];
+                int maxIndex = 0;
+                for (int i = 1; i < 15; i++) {
+                    if (weights[i] > maxWeight) {
+                        maxWeight = weights[i];
+                        maxIndex = i;
+                    }
+                }
+                System.out.println("Student with highest weight: " + students[maxIndex] + " - " + maxWeight);
+                break;
+            case 3:
+                double minWeight = weights[0];
+                int minIndex = 0;
+                for (int i = 1; i < 15; i++) {
+                    if (weights[i] < minWeight) {
+                        minWeight = weights[i];
+                        minIndex = i;
+                    }
+                }
+                System.out.println("Student with lowest weight: " + students[minIndex] + " - " + minWeight);
+                break;
+            default:
+                System.out.println("Invalid choice. Please try again.");
+        }
+
+        input.close();
+    }
+}

@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class WordBuildingGame {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String e1, e2;
+
+        while (true) {
+            System.out.println("Enter E1's word:");
+            e1 = scanner.nextLine();
+            if (e1.length() == 0) break;
+
+            System.out.println("Enter E2's word:");
+            e2 = scanner.nextLine();
+            if (e2.length() == 0) break;
+
+            if (e1.charAt(e1.length() - 1) != e2.charAt(0)) {
+                System.out.println("Game won by E2.");
+                break;
+            }
+        }
+    }
+}

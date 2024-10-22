@@ -1,0 +1,43 @@
+class Main {  
+    static int findElement(int array[], int n, int key)  
+    {  
+        int i;  
+        for (i = 0; i < n; i++)  
+            if (array[i] == key)  
+                return i;  
+  
+        return -1;  
+    }  
+    static int deleteElement(int array[], int n, int key)  
+    {  
+        int pos = findElement(array, n, key);  
+  
+        if (pos == -1) {  
+            System.out.println("Element not found");  
+            return n;  
+        }  
+        int i;  
+        for (i = pos; i < n - 1; i++)  
+            array[i] = array[i + 1];  
+  
+        return n - 1;  
+    }  
+    public static void main(String args[])  
+    {  
+        int i;  
+        int array[] = { 20, 60, 40, 50, 30 };  
+  
+        int n = array.length;  
+        int key = 40;  
+  
+        System.out.println("Array before deletion");  
+        for (i = 0; i < n; i++)  
+            System.out.print(array[i] + " ");  
+          
+        n = deleteElement(array, n, key);  
+  
+        System.out.println("\n\nArray after deletion");  
+        for (i = 0; i < n; i++)  
+            System.out.print(array[i] + " ");  
+    }  
+}  

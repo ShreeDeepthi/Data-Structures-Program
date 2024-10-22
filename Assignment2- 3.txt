@@ -1,0 +1,46 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class EmployeeIDInsertion {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Input the number of records
+        System.out.print("Enter number of records: ");
+        int numRecords = scanner.nextInt();
+
+        // Input the existing IDs in ascending order
+        System.out.println("Enter Ids of all " + numRecords + " students (In ascending order):");
+        ArrayList<Integer> ids = new ArrayList<>();
+        for (int i = 0; i < numRecords; i++) {
+            ids.add(scanner.nextInt());
+        }
+
+        // Input the new employee ID
+        System.out.print("Enter the Id of newly admitted Employee: ");
+        int newId = scanner.nextInt();
+
+        // Insert the new ID while maintaining the order
+        int position = 0;
+        for (int i = 0; i < ids.size(); i++) {
+            if (ids.get(i) > newId) {
+                position = i;
+                break;
+            }
+        }
+        if (position == 0 && newId > ids.get(ids.size() - 1)) {
+            ids.add(newId);
+        } else {
+            ids.add(position, newId);
+        }
+
+        // Output the updated list of IDs
+        System.out.print("After Insertion: ");
+        for (int id : ids) {
+            System.out.print(id + " ");
+        }
+        System.out.println();
+        
+        scanner.close();
+    }
+}
